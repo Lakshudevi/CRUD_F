@@ -7,9 +7,10 @@ function App() {
   const [fiteredUsers, setFilterUsers] = useState([]);
   const [isOpen, isModelOpen] = useState(false);
   const [userData,setUserData]=useState({name:"",age:"",city:""});
-
+// let url='https://crud-b-sb8a.onrender.com'
+let url='http://localhost:8000'
   const getAllUsers = async () => {
-    await axios.get("https://crud-b-sb8a.onrender.com/users").then((res) => {
+    await axios.get(`${url}/users`).then((res) => {
       // console.log(res.data);
       setUsers(res.data);
       setFilterUsers(res.data);
@@ -29,7 +30,7 @@ function App() {
 
     const isConfirmed = window.confirm("Are you sure you want to delete this user?");
     if (isConfirmed) {
-      await axios.delete(`https://crud-b-sb8a.onrender.com/users/${id}`).then((res) => {
+      await axios.post(`${url}/users/${id}`).then((res) => {
         setUsers(res.data);
         setFilterUsers(res.data);
       });
@@ -53,10 +54,10 @@ const handleData=(e)=>{
 const handleSubmit= async(e)=>{
   e.preventDefault();
   if(userData.id){
-    await axios.patch(`https://crud-b-sb8a.onrender.com/users/${userData.id}`,userData).then((res)=>{
+    await axios.patch(`${url}/users/${userData.id}`,userData).then((res)=>{
       console.log(res)});
   }else{
-  await axios.post("https://crud-b-sb8a.onrender.com/users",userData).then((res)=>{
+  await axios.post(`${url}/users`,userData).then((res)=>{
     console.log(res)});
   }
   modelClose();
