@@ -7,8 +7,8 @@ function App() {
   const [fiteredUsers, setFilterUsers] = useState([]);
   const [isOpen, isModelOpen] = useState(false);
   const [userData,setUserData]=useState({name:"",age:"",city:""});
-// let url='https://crud-b-sb8a.onrender.com'
-let url='http://localhost:8000'
+let url='https://crud-b-sb8a.onrender.com'
+// let url='http://localhost:8000'
   const getAllUsers = async () => {
     await axios.get(`${url}/users`).then((res) => {
       // console.log(res.data);
